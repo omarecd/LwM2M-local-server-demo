@@ -12,10 +12,20 @@ The goal is to show how raw LwM2M data can be captured, transformed, and prepare
 - **Docker Compose** – Simple service orchestration  
 - **Real IoT device** – Sending temperature, humidity & concentration data  
 
-### ⚙️ Example Output
+### Example Output
 ```json
 {
   "temperature": { "value": 22.8 },
   "humidity": { "value": 45.6 },
   "concentration": { "value": 809.0 }
 }
+```
+
+### Highlights
+- LwM2M device registration via PSK
+- Live telemetry through Leshan SSE API
+- Node-RED function for clean JSON transformation
+- Simple and portable Docker setup
+
+### Author: Omar Cruz
+IoT Engineer | Edge & Data Enthusiast | Based in Belgium 🇧🇪
