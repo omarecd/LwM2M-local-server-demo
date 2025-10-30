@@ -69,13 +69,8 @@ Open the UI: http://<YOUR_IP>:8080 check that the server is running.
 
 ## Step 3 — Verify ports & basic connectivity
 
-On the VM:
-```
-ss -u -lpn | grep 568
-# Expect listeners on 5683 and 5684 (UDP)
-```
 
-From your laptop: “succeeded!” means reachable
+From your laptop do as follows. If you get “succeeded!” it means reachable
 ```
 nc -zvu <YOUR_IP> 5683
 nc -zvu <YOUR_IP> 5684
@@ -109,7 +104,6 @@ Reboot the device. In CLIENTS, you should see the endpoint show up and update pe
 Read Temperature (Object 3303 / Instance 0 / Resource 5700):
 
 
-
 ```
 curl http://<YOUR_IP>:8080/api/clients/urn:imei:<YOUR_IMEI>/3303/0/5700
 # → {"content":{"type":"FLOAT","value":"22.9"}, ...}
@@ -121,7 +115,7 @@ Very likely you will have a response like this:
 Invalid request: The destination client is sleeping, request cannot be sent.
 ```
 
-The reason for this is that the API Call needs to be made at the exact moment when the device is transmiting...
+The reason for this is that the API Call needs to be made at the exact moment when the device is transmiting... That is offcourse not very handy, reason why the next step comes.
 
 
 
@@ -150,6 +144,8 @@ event: SEND
 data: {"ep":"urn:imei:...","val":{"/3303/0/5700":{...}}}
 ```
 
+The events type 'SEND' contain exactly the telemetry information that we need.
+
 ## Step 8 — Node-RED: subscribe & transform
 
 Open Node-RED: http://<YOUR_IP>:1880
@@ -162,7 +158,6 @@ Add a flow:
 - Function node → transform payload
 - Debug or MQTT out
 
-Function code (maps Temperature/Humidity/Illuminance/Concentration):
 
 ```
 // Extract all relevant sensor values into clean { value: … } format
