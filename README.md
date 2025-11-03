@@ -28,5 +28,7 @@ The goal is to show how raw LwM2M data can be captured, transformed, and prepare
 - Node-RED function for clean JSON transformation
 - Simple and portable Docker setup
 
+![LwM2M in a virtual machine](images/image.png)
+
 ### Author: Omar Cruz
 IoT Engineer | Based in Belgium 🇧🇪
